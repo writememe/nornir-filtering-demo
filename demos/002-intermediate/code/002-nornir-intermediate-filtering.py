@@ -128,6 +128,7 @@ def filter_host_platform(nr, platform):
     # Print seperator
     print("=" * 50)
 
+
 def filter_host_vendor(nr, vendor):
     """
     Filter the hosts inventory, based on a certain vendor.
@@ -200,6 +201,90 @@ def filter_group_vendor(nr, vendor):
     # Print seperator
     print("=" * 50)
 
+
+def filter_host_dev_type_vendor(nr, device_type, vendor):
+    """
+    Filter the hosts inventory, based on the following:
+    - device_type AND,
+    - vendor
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param mgmt_ip: The management IP to filter on.
+    :type mgmt_ip: string
+    """
+    target_hosts = nr.filter(
+        device_type=device_type, vendor=vendor
+    ).inventory.hosts.keys()
+    # Print seperator
+    print("=" * 50)
+    print(f"The hosts which with device_type: {device_type} and vendor: {vendor} are:")
+    for host in target_hosts:
+        print(f"Host: {Fore.CYAN}{host}")
+    # Print seperator
+    print("=" * 50)
+
+
+def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
+    """
+    Filter the hosts inventory, based on the following:
+    - device_type AND,
+    - vendor AND,
+    - mgmt_ip
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param mgmt_ip: The management IP to filter on.
+    :type mgmt_ip: string
+    """
+    target_hosts = nr.filter(
+        device_type=device_type, vendor=vendor, mgmt_ip=mgmt_ip
+    ).inventory.hosts.keys()
+    # Print seperator
+    print("=" * 50)
+    print(
+        f"The host with device_type - {device_type} , vendor - {vendor} and mgmt_ip {mgmt_ip} is:"
+    )
+    for host in target_hosts:
+        print(f"Host: {Fore.CYAN}{host}")
+    # Print seperator
+    print("=" * 50)
+
+
+def filter_vendor(nr, vendor):
+    """
+    Filter the hosts inventory, based on a certain management
+    IP address.
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param mgmt_ip: The management IP to filter on.
+    :type mgmt_ip: string
+    """
+    print(f"Targeting vendor: {vendor}")
+    target_vendor = nr.filter(vendor=vendor)
+    # Assign to variable for printouts
+    target_vendor_hosts = target_vendor.inventory.hosts.keys()
+    # Print seperator
+    print("=" * 50)
+    print(f"The hosts which with vendor - {vendor} are:")
+    for host in target_vendor_hosts:
+        print(f"Host: {Fore.CYAN}{host}")
+    # Print seperator
+    print("=" * 50)
+    return target_vendor
+
+
+def filter_dev_type(target_vendor, device_type):
+    """"""
+    target_dev_type = target_vendor.filter(device_type=device_type).inventory.hosts.keys()
+    print(f"Targeting device_type: {device_type}")
+    # Print seperator
+    print("=" * 50)
+    print(f"The hosts which with device_type - {device_type} are:")
+    for host in target_dev_type:
+        print(f"Host: {Fore.CYAN}{host}")
+    # Print seperator
+    print("=" * 50)
+
+
 # Initialise inventory
 nr = get_nr()
 # Display entire inventory
@@ -212,8 +297,17 @@ display_group_dict(nr, group="nxos_ssh")
 """
 Basic filter functions
 """
-filter_host_vendor(nr, vendor="arista")
-filter_group_vendor(nr, vendor="cisco")
-filter_host_platform(nr, platform="ios")
-filter_group_platform(nr, platform="nxos_ssh")
-filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
+# filter_host_vendor(nr, vendor="arista")
+# filter_group_vendor(nr, vendor="cisco")
+# filter_host_platform(nr, platform="ios")
+# filter_group_platform(nr, platform="nxos_ssh")
+# filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
+"""
+Intermediate filter functions
+"""
+filter_host_dev_type_vendor(nr, device_type="switch", vendor="juniper")
+filter_host_dev_type_vendor_mgmt_ip(
+    nr, device_type="switch", vendor="juniper", mgmt_ip="10.0.0.23"
+)
+cisco_devices = filter_vendor(nr, vendor="cisco")
+filter_dev_type(target_vendor=cisco_devices, device_type="router")

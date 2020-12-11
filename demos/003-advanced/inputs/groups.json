@@ -2,31 +2,46 @@
     {
         "name": "ios",
         "platform": "ios",
-        "port": 22,
-        "auth_strict_key": "false"
+        "vendor": "Cisco"
     },
     {
         "name": "junos",
         "platform": "junos",
-        "port": 22,
-        "auth_strict_key": "false"
+        "vendor": "Juniper"
     },
     {
         "name": "eos",
         "platform": "eos",
-        "port": 22,
-        "auth_strict_key": "false"
+        "vendor": "Arista"
     },
     {
         "name": "nxos",
         "platform": "nxos",
-        "port": 22,
-        "auth_strict_key": "false"
+        "vendor": "Cisco"
     },
     {
         "name": "nxos_ssh",
         "platform": "nxos_ssh",
-        "port": 22,
-        "auth_strict_key": "false"
+        "vendor": "Cisco"
+    },
+    {
+        "name": "panos",
+        "platform": "paloalto_panos",
+        "vendor": "Palo Alto"
+    },
+    {
+        "name": "lab",
+        "sla": "70",
+        "production": "false"
+    },
+    {
+        "name": "prod",
+        "sla": "90",
+        "production": "true"
+    },
+    {
+        "name": "test",
+        "sla": "80",
+        "production": "false"
     }
 ]

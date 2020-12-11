@@ -8,7 +8,7 @@ lab-csr-01.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.16
         vendor: cisco
-        type: router
+        device_type: router
 dfjt-r001.lab.dfjt.local:
     hostname: dfjt-r001.lab.dfjt.local
     groups:
@@ -17,7 +17,7 @@ dfjt-r001.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.1
         vendor: cisco
-        type: router
+        device_type: router
 lab-arista-01.lab.dfjt.local:
     hostname: lab-arista-01.lab.dfjt.local
     groups:
@@ -26,7 +26,7 @@ lab-arista-01.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.11
         vendor: arista
-        type: switch
+        device_type: switch
 lab-arista-02.lab.dfjt.local:
     hostname: lab-arista-02.lab.dfjt.local
     groups:
@@ -35,7 +35,7 @@ lab-arista-02.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.18
         vendor: arista
-        type: switch
+        device_type: switch
 lab-junos-01.lab.dfjt.local:
     hostname: lab-junos-01.lab.dfjt.local
     groups:
@@ -44,7 +44,7 @@ lab-junos-01.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.15
         vendor: juniper
-        type: router
+        device_type: router
 lab-nxos-01.lab.dfjt.local:
     hostname: lab-nxos-01.lab.dfjt.local
     groups:
@@ -53,7 +53,7 @@ lab-nxos-01.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.14
         vendor: cisco
-        type: switch
+        device_type: switch
 lab-paloalto-01.lab.dfjt.local:
     hostname: lab-paloalto-01.lab.dfjt.local
     groups:
@@ -62,7 +62,7 @@ lab-paloalto-01.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.21
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 lab-paloalto-02.lab.dfjt.local:
     hostname: lab-paloalto-02.lab.dfjt.local
     groups:
@@ -71,7 +71,7 @@ lab-paloalto-02.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.22
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 lab-junos-06.lab.dfjt.local:
     hostname: lab-junos-06.lab.dfjt.local
     groups:
@@ -80,7 +80,7 @@ lab-junos-06.lab.dfjt.local:
     data:
         mgmt_ip: 10.0.0.23
         vendor: juniper
-        type: switch
+        device_type: switch
 prd-csr-01.prd.dfjt.local:
     hostname: prd-csr-01.prd.dfjt.local
     groups:
@@ -89,7 +89,7 @@ prd-csr-01.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.16
         vendor: cisco
-        type: router
+        device_type: router
 dfjt-r001.prd.dfjt.local:
     hostname: dfjt-r001.prd.dfjt.local
     groups:
@@ -98,7 +98,7 @@ dfjt-r001.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.1
         vendor: cisco
-        type: router
+        device_type: router
 prd-arista-01.prd.dfjt.local:
     hostname: prd-arista-01.prd.dfjt.local
     groups:
@@ -107,7 +107,7 @@ prd-arista-01.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.11
         vendor: arista
-        type: switch
+        device_type: switch
 prd-arista-02.prd.dfjt.local:
     hostname: prd-arista-02.prd.dfjt.local
     groups:
@@ -116,7 +116,7 @@ prd-arista-02.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.18
         vendor: arista
-        type: switch
+        device_type: switch
 prd-junos-01.prd.dfjt.local:
     hostname: prd-junos-01.prd.dfjt.local
     groups:
@@ -125,7 +125,7 @@ prd-junos-01.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.15
         vendor: juniper
-        type: router
+        device_type: router
 prd-nxos-01.prd.dfjt.local:
     hostname: prd-nxos-01.prd.dfjt.local
     groups:
@@ -134,7 +134,7 @@ prd-nxos-01.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.14
         vendor: cisco
-        type: switch
+        device_type: switch
 prd-paloalto-01.prd.dfjt.local:
     hostname: prd-paloalto-01.prd.dfjt.local
     groups:
@@ -143,7 +143,7 @@ prd-paloalto-01.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.21
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 prd-paloalto-02.prd.dfjt.local:
     hostname: prd-paloalto-02.prd.dfjt.local
     groups:
@@ -152,7 +152,7 @@ prd-paloalto-02.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.22
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 prd-junos-06.prd.dfjt.local:
     hostname: prd-junos-06.prd.dfjt.local
     groups:
@@ -161,7 +161,7 @@ prd-junos-06.prd.dfjt.local:
     data:
         mgmt_ip: 10.0.16.23
         vendor: juniper
-        type: switch
+        device_type: switch
 tst-csr-01.tst.dfjt.local:
     hostname: tst-csr-01.tst.dfjt.local
     groups:
@@ -170,7 +170,7 @@ tst-csr-01.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.16
         vendor: cisco
-        type: router
+        device_type: router
 dfjt-r001.tst.dfjt.local:
     hostname: dfjt-r001.tst.dfjt.local
     groups:
@@ -179,7 +179,7 @@ dfjt-r001.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.1
         vendor: cisco
-        type: router
+        device_type: router
 tst-arista-01.tst.dfjt.local:
     hostname: tst-arista-01.tst.dfjt.local
     groups:
@@ -188,7 +188,7 @@ tst-arista-01.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.11
         vendor: arista
-        type: switch
+        device_type: switch
 tst-arista-02.tst.dfjt.local:
     hostname: tst-arista-02.tst.dfjt.local
     groups:
@@ -197,7 +197,7 @@ tst-arista-02.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.18
         vendor: arista
-        type: switch
+        device_type: switch
 tst-junos-01.tst.dfjt.local:
     hostname: tst-junos-01.tst.dfjt.local
     groups:
@@ -206,7 +206,7 @@ tst-junos-01.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.15
         vendor: juniper
-        type: router
+        device_type: router
 tst-nxos-01.tst.dfjt.local:
     hostname: tst-nxos-01.tst.dfjt.local
     groups:
@@ -215,7 +215,7 @@ tst-nxos-01.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.14
         vendor: cisco
-        type: switch
+        device_type: switch
 tst-paloalto-01.tst.dfjt.local:
     hostname: tst-paloalto-01.tst.dfjt.local
     groups:
@@ -224,7 +224,7 @@ tst-paloalto-01.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.21
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 tst-paloalto-02.tst.dfjt.local:
     hostname: tst-paloalto-02.tst.dfjt.local
     groups:
@@ -233,7 +233,7 @@ tst-paloalto-02.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.22
         vendor: palo alto
-        type: firewall
+        device_type: firewall
 tst-junos-06.tst.dfjt.local:
     hostname: tst-junos-06.tst.dfjt.local
     groups:
@@ -242,4 +242,4 @@ tst-junos-06.tst.dfjt.local:
     data:
         mgmt_ip: 10.0.32.23
         vendor: juniper
-        type: switch
+        device_type: switch
