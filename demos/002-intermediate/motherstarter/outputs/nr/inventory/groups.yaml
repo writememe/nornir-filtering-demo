@@ -24,3 +24,15 @@ panos:
     platform: paloalto_panos
     data:
         vendor: palo alto
+lab:
+    data:
+        sla: 70
+        production: false
+prod:
+    data:
+        sla: 90
+        production: true
+test:
+    data:
+        sla: 80
+        production: false

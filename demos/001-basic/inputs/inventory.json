@@ -3,60 +3,108 @@
         "name": "lab-csr-01.lab.dfjt.local",
         "mgmt_ip": "10.0.0.16",
         "vendor": "cisco",
-        "device_type": "router",
-        "operating_system": "ios",
-        "device_role": "WAN Router",
-        "site": "Melbourne",
-        "country": "Australia"
+        "operating_system": "ios"
     },
     {
         "name": "dfjt-r001.lab.dfjt.local",
         "mgmt_ip": "10.0.0.1",
         "vendor": "cisco",
-        "device_type": "router",
-        "operating_system": "ios",
-        "device_role": "Internet Router",
-        "site": "Melbourne",
-        "country": "Australia"
+        "operating_system": "ios"
     },
     {
         "name": "lab-arista-01.lab.dfjt.local",
         "mgmt_ip": "10.0.0.11",
         "vendor": "arista",
-        "device_type": "switch",
-        "operating_system": "eos",
-        "device_role": "Primary Core Switch",
-        "site": "Port Louis",
-        "country": "Mauritius"
+        "operating_system": "eos"
     },
     {
         "name": "lab-arista-02.lab.dfjt.local",
         "mgmt_ip": "10.0.0.18",
         "vendor": "arista",
-        "device_type": "switch",
-        "operating_system": "eos",
-        "device_role": "Secondary Core Switch",
-        "site": "Port Louis",
-        "country": "Mauritius"
+        "operating_system": "eos"
     },
     {
         "name": "lab-junos-01.lab.dfjt.local",
         "mgmt_ip": "10.0.0.15",
         "vendor": "juniper",
-        "device_type": "router",
-        "operating_system": "junos",
-        "device_role": "Third Party Firewall",
-        "site": "Christchurch",
-        "country": "New Zealand"
+        "operating_system": "junos"
     },
     {
         "name": "lab-nxos-01.lab.dfjt.local",
         "mgmt_ip": "10.0.0.14",
         "vendor": "cisco",
-        "device_type": "switch",
-        "operating_system": "nxos",
-        "device_role": "DMZ Switch",
-        "site": "Christchurch",
-        "country": "New Zealand"
+        "operating_system": "nxos"
+    },
+    {
+        "name": "lab-paloalto-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.21",
+        "vendor": "palo alto",
+        "operating_system": "panos"
+    },
+    {
+        "name": "lab-paloalto-02.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.22",
+        "vendor": "palo alto",
+        "operating_system": "panos"
+    },
+    {
+        "name": "lab-junos-06.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.23",
+        "vendor": "juniper",
+        "operating_system": "junos"
+    },
+    {
+        "name": "prd-csr-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.16",
+        "vendor": "cisco",
+        "operating_system": "ios"
+    },
+    {
+        "name": "dfjt-r001.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.1",
+        "vendor": "cisco",
+        "operating_system": "ios"
+    },
+    {
+        "name": "prd-arista-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.11",
+        "vendor": "arista",
+        "operating_system": "eos"
+    },
+    {
+        "name": "prd-arista-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.18",
+        "vendor": "arista",
+        "operating_system": "eos"
+    },
+    {
+        "name": "prd-junos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.15",
+        "vendor": "juniper",
+        "operating_system": "junos"
+    },
+    {
+        "name": "prd-nxos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.14",
+        "vendor": "cisco",
+        "operating_system": "nxos"
+    },
+    {
+        "name": "prd-paloalto-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.21",
+        "vendor": "palo alto",
+        "operating_system": "panos"
+    },
+    {
+        "name": "prd-paloalto-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.22",
+        "vendor": "palo alto",
+        "operating_system": "panos"
+    },
+    {
+        "name": "prd-junos-06.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.23",
+        "vendor": "juniper",
+        "operating_system": "junos"
     }
 ]

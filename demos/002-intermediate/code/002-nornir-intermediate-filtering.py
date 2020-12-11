@@ -128,7 +128,6 @@ def filter_host_platform(nr, platform):
     # Print seperator
     print("=" * 50)
 
-
 def filter_host_vendor(nr, vendor):
     """
     Filter the hosts inventory, based on a certain vendor.
@@ -200,7 +199,6 @@ def filter_group_vendor(nr, vendor):
         print(f"Group: {Fore.CYAN}{group}")
     # Print seperator
     print("=" * 50)
-
 
 # Initialise inventory
 nr = get_nr()

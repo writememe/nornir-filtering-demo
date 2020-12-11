@@ -5,6 +5,7 @@
     hostname: {{ dev.name }}
     groups:
         - {{ dev.operating_system }}
+        - {{ dev.environment }}
     data:
         mgmt_ip: {{ dev.mgmt_ip }}
         vendor: {{ dev.vendor|lower }}
