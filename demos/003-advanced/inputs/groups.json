@@ -43,5 +43,53 @@
         "name": "test",
         "sla": "80",
         "production": "false"
+    },
+    {
+        "name": "mel",
+        "full_name": "Melbourne",
+        "country": "Australia",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "primary"
+    },
+    {
+        "name": "hbt",
+        "full_name": "Hobart",
+        "country": "Australia",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "tertiary"
+    },
+    {
+        "name": "chc",
+        "full_name": "Christchurch",
+        "country": "New Zealand",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "secondary"
+    },
+    {
+        "name": "ptl",
+        "full_name": "Port Louis",
+        "country": "Mauritius",
+        "region": "amea",
+        "hemisphere": "southern",
+        "site_type": "primary"
+    },
+    {
+        "name": "mtl",
+        "full_name": "Montreal",
+        "country": "Canada",
+        "region": "amer",
+        "hemisphere": "northern",
+        "site_type": "primary"     
+    },
+    {
+        "name": "bcn",
+        "full_name": "Barcelona",
+        "country": "Spain",
+        "region": "amea",
+        "hemisphere": "northern",
+        "site_type": "primary"
     }
 ]

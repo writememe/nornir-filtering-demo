@@ -16,6 +16,54 @@
     data:
         sla: {{ grp.sla|int }}
         production: {{ grp.production }}
+{% elif grp.name == "mel" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
+{% elif grp.name == "hbt" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
+{% elif grp.name == "chc" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
+{% elif grp.name == "ptl" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
+{% elif grp.name == "mtl" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
+{% elif grp.name == "bcn" %}
+{{ grp.name }}:
+    data:
+        full_name: {{ grp.full_name }}
+        country: {{ grp.country }}
+        region: {{ grp.region }}
+        hemisphere: {{ grp.hemisphere }}
+        site_type: {{ grp.site_type }}
 {% else %}
 {{ grp.name }}:
     platform: {{ grp.platform }}
