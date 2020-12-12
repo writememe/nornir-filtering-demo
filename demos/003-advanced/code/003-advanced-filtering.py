@@ -395,6 +395,24 @@ def filter_env_devices(nr, environment):
     print("=" * 50)
 
 
+def filter_sla(nr, sla):
+    """
+    Filter all inventory that does not equal a dev_type_a AND dev_type_b
+    """
+    sla_devs = nr.filter(F(sla__ge=sla))
+    print(f"Groups with SLA greater or equal to {sla} are:")
+    for host, data in sla_devs.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- SLA: {Fore.CYAN}{data['sla']}"
+            + Fore.RESET
+            + f"- Production: {Fore.CYAN}{data['production']}"
+        )
+    print(f"Total: {len(sla_devs.inventory.hosts.items())}")
+    print("=" * 50)
+
+
 """
 Diagnostic/display functions
 """
@@ -431,8 +449,9 @@ Intermediate filter functions
 Advanced filter functions
 """
 # filter_hemisphere(nr)
-filter_eq_site_code(nr, site_code="mel")
-filter_neq_site_code(nr, site_code="mel")
-filter_or_site_code(nr, site_code_a="mel", site_code_b="chc")
-filter_not_and_dev_type(nr, dev_type_a="switch", dev_type_b="router")
-filter_env_devices(nr, environment="test")
+# filter_eq_site_code(nr, site_code="mel")
+# filter_neq_site_code(nr, site_code="mel")
+# filter_or_site_code(nr, site_code_a="mel", site_code_b="chc")
+# filter_not_and_dev_type(nr, dev_type_a="switch", dev_type_b="router")
+# filter_env_devices(nr, environment="test")
+filter_sla(nr, sla=80)
