@@ -719,10 +719,13 @@ Advanced filter functions
 # filter_odd_devices(nr)
 # filter_even_devices(nr)
 # filter_test_domain_devices(nr)
-# filter_device_name_convention(nr)
-# filter_device_name_non_convention(nr)
+filter_device_name_convention(nr)
+filter_device_name_non_convention(nr)
 # filter_site_type(nr, site_type="primary")
 # filter_non_primary_site_type(nr)
+"""
+Chaining filters together
+"""
 odd_devices = filter_odd_devices(nr)
 compliant_odd_devices = filter_device_name_convention(nr=odd_devices)
 apac_compliant_odd_devices = filter_region(nr=compliant_odd_devices, region="apac")
