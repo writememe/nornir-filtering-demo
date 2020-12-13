@@ -1,6 +1,6 @@
 [
     {
-        "name": "lab-csr-01.lab.dfjt.local",
+        "name": "lab-csr-011.lab.dfjt.local",
         "mgmt_ip": "10.0.0.16",
         "vendor": "cisco",
         "operating_system": "ios",
@@ -60,7 +60,7 @@
         "os_version": "9.3(6)"
     },
     {
-        "name": "lab-paloalto-01.lab.dfjt.local",
+        "name": "lab-paloalto-01.lab.djft.local",
         "mgmt_ip": "10.0.0.21",
         "vendor": "palo alto",
         "operating_system": "panos",
@@ -210,7 +210,7 @@
         "os_version": "4.21.1F"
     },
     {
-        "name": "tst-arista-02.tst.dfjt.local",
+        "name": "tstt-arista-02.tst.dfjt.local",
         "mgmt_ip": "10.0.32.18",
         "vendor": "arista",
         "operating_system": "eos",

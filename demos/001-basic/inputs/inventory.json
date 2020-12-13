@@ -1,6 +1,6 @@
 [
     {
-        "name": "lab-csr-01.lab.dfjt.local",
+        "name": "lab-csr-011.lab.dfjt.local",
         "mgmt_ip": "10.0.0.16",
         "vendor": "cisco",
         "operating_system": "ios"
@@ -36,7 +36,7 @@
         "operating_system": "nxos"
     },
     {
-        "name": "lab-paloalto-01.lab.dfjt.local",
+        "name": "lab-paloalto-01.lab.djft.local",
         "mgmt_ip": "10.0.0.21",
         "vendor": "palo alto",
         "operating_system": "panos"

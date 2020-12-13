@@ -548,13 +548,30 @@ def odd_device_naming_convention(host):
 
 
 def even_device_naming_convention(host):
-    return bool(re.match(".+\-[0-9][2,4,6,8,9].+", host.name))
+    return bool(re.match(".+\-[0-9][2,4,6,8,0].+", host.name))
 
 
-def odd_devices(nr):
+def test_domain_name_convention(host):
+    return bool(re.match(".+.tst.dfjt.local$", host.name))
+
+
+def device_name_convention(host):
+    if re.match("\w{3}\-\w+\-\d{2}.\w{3}.dfjt.local", host.name):
+        return True
+    else:
+        return False
+
+
+def non_device_name_convention(host):
+
+    if re.match("\w{3}\-\w+\-\d{2}.\w{3}.dfjt.local", host.name):
+        return False
+    else:
+        return True
+
+
+def filter_odd_devices(nr):
     """"""
-    # odd_string = re.match(".+\-01.+", name)
-    # some = re.match()
     target_devices = nr.filter(filter_func=odd_device_naming_convention)
     # print(f"Hosts in region {region} are:")
     for host, data in target_devices.inventory.hosts.items():
@@ -568,14 +585,13 @@ def odd_devices(nr):
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
     print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
 
 
-def even_devices(nr):
+def filter_even_devices(nr):
     """"""
-    # odd_string = re.match(".+\-01.+", name)
-    # some = re.match()
     target_devices = nr.filter(filter_func=even_device_naming_convention)
-    # print(f"Hosts in region {region} are:")
+    print(f"Hosts in domain-name are:")
     for host, data in target_devices.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
@@ -587,6 +603,71 @@ def even_devices(nr):
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
     print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_test_domain_devices(nr):
+    """"""
+    target_devices = nr.filter(filter_func=test_domain_name_convention)
+    print(f"Hosts in domain-name are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(f"Host: {Fore.CYAN}{host} ")
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_device_name_convention(nr):
+    """"""
+    target_devices = nr.filter(filter_func=device_name_convention)
+    print(f"Hosts which comply with naming convention:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(f"Host: {Fore.CYAN}{host} ")
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_device_name_non_convention(nr):
+    """"""
+    target_devices = nr.filter(filter_func=non_device_name_convention)
+    print(f"Hosts which do NOT comply with naming convention:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(f"Host: {Fore.CYAN}{host} ")
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_site_type(nr, site_type):
+    target_devices = nr.filter(F(site_type__eq=site_type))
+    print(f"Hosts which match site type {site_type} are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Site Type: {Fore.CYAN}{data['site_type']} "
+            + Fore.RESET
+            + f"- Site Code: {Fore.CYAN}{data['site_code']} "
+            + Fore.RESET
+            + f"- Full Name: {Fore.CYAN}{data['full_name']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_non_primary_site_type(nr):
+    target_devices = nr.filter(F(site_type__any=["tertiary", "secondary"]))
+    print(f"Hosts which are at non-primary site types are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Site Type: {Fore.CYAN}{data['site_type']} "
+            + Fore.RESET
+            + f"- Site Code: {Fore.CYAN}{data['site_code']} "
+            + Fore.RESET
+            + f"- Full Name: {Fore.CYAN}{data['full_name']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
 
 
 """
@@ -595,7 +676,7 @@ Diagnostic/display functions
 # Initialise inventory
 nr = get_nr()
 # Display entire inventory
-# display_inventory(nr)
+display_inventory(nr)
 # Display host data structure
 display_host_dict(nr, host="lab-arista-01.lab.dfjt.local")
 # Display group data structure
@@ -635,5 +716,19 @@ Advanced filter functions
 # non_cert_devs = filter_non_certified_os_version(nr)
 # filter_prod_non_certified_os_version(nr=non_cert_devs)
 # apac_devices = filter_region(nr, region="apac")
-odd_devices(nr)
-even_devices(nr)
+# filter_odd_devices(nr)
+# filter_even_devices(nr)
+# filter_test_domain_devices(nr)
+# filter_device_name_convention(nr)
+# filter_device_name_non_convention(nr)
+# filter_site_type(nr, site_type="primary")
+# filter_non_primary_site_type(nr)
+odd_devices = filter_odd_devices(nr)
+compliant_odd_devices = filter_device_name_convention(nr=odd_devices)
+apac_compliant_odd_devices = filter_region(nr=compliant_odd_devices, region="apac")
+apac_secondary_compliant_odd_devices = filter_non_primary_site_type(
+    nr=apac_compliant_odd_devices
+)
+apac_secondary_compliant_odd_certified_os_devices = filter_certified_os_version(
+    nr=apac_secondary_compliant_odd_devices
+)
