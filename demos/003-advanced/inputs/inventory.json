@@ -16,7 +16,7 @@
         "operating_system": "ios",
         "environment": "lab",
         "device_type": "router",
-        "site_code": "mel",
+        "site_code": "bcn",
         "os_version": "16.6.3"
     },
     {
@@ -26,7 +26,7 @@
         "operating_system": "eos",
         "environment": "lab",
         "device_type": "switch",
-        "site_code": "mel",
+        "site_code": "mtl",
         "os_version": "4.22.0F"
     },
     {
@@ -46,7 +46,7 @@
         "operating_system": "junos",
         "environment": "lab",
         "device_type": "router",
-        "site_code": "mel",
+        "site_code": "mtl",
         "os_version": "18.4R2-S5"
     },
     {
@@ -56,7 +56,7 @@
         "operating_system": "nxos",
         "environment": "lab",
         "device_type": "switch",
-        "site_code": "mel",
+        "site_code": "mtl",
         "os_version": "9.3(6)"
     },
     {
@@ -76,7 +76,7 @@
         "operating_system": "panos",
         "environment": "lab",
         "device_type": "firewall",
-        "site_code": "mel",
+        "site_code": "bcn",
         "os_version": "9.1.3-h1"
     },
     {
@@ -206,7 +206,7 @@
         "operating_system": "eos",
         "environment": "test",
         "device_type": "switch",
-        "site_code": "mel",
+        "site_code": "ptl",
         "os_version": "4.21.1F"
     },
     {
@@ -216,7 +216,7 @@
         "operating_system": "eos",
         "environment": "test",
         "device_type": "switch",
-        "site_code": "mel",
+        "site_code": "ptl",
         "os_version": "4.21.1F"
     },
     {
@@ -226,7 +226,7 @@
         "operating_system": "junos",
         "environment": "test",
         "device_type": "router",
-        "site_code": "mel",
+        "site_code": "ptl",
         "os_version": "15.1R7-S6"
     },
     {

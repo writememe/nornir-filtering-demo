@@ -9,6 +9,7 @@ import os
 import json
 from colorama import Fore, init
 from nornir.core.filter import F
+import re
 
 
 # Auto-reset colorama colours back after each print statement
@@ -120,12 +121,17 @@ def filter_host_platform(nr, platform):
     :param platform: The type of platform you want to filter on.
     :type platform: string
     """
-    target_hosts = nr.filter(platform=platform).inventory.hosts.keys()
+    target_hosts = nr.filter(platform=platform)
     # Print seperator
     print("=" * 50)
     print(f"The hosts which have platform {platform} are:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform}"
+        )
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -138,12 +144,17 @@ def filter_host_vendor(nr, vendor):
     :param vendor: The type of vendor you want to filter on.
     :type vendor: string
     """
-    target_hosts = nr.filter(vendor=vendor).inventory.hosts.keys()
+    target_hosts = nr.filter(vendor=vendor)
     # Print seperator
     print("=" * 50)
     print(f"The hosts which have vendor {vendor} are:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']}"
+        )
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -157,12 +168,17 @@ def filter_host_mgmt_ip(nr, mgmt_ip):
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
     """
-    target_hosts = nr.filter(mgmt_ip=mgmt_ip).inventory.hosts.keys()
+    target_hosts = nr.filter(mgmt_ip=mgmt_ip)
     # Print seperator
     print("=" * 50)
     print(f"The hosts which have the management IP address {mgmt_ip} is:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
+        )
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -213,14 +229,19 @@ def filter_host_dev_type_vendor(nr, device_type, vendor):
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
     """
-    target_hosts = nr.filter(
-        device_type=device_type, vendor=vendor
-    ).inventory.hosts.keys()
+    target_hosts = nr.filter(device_type=device_type, vendor=vendor)
     # Print seperator
     print("=" * 50)
-    print(f"The hosts which with device_type: {device_type} and vendor: {vendor} are:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    print(f"The hosts with device_type: {device_type} and vendor: {vendor} are:")
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+        )
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -236,16 +257,23 @@ def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
     """
-    target_hosts = nr.filter(
-        device_type=device_type, vendor=vendor, mgmt_ip=mgmt_ip
-    ).inventory.hosts.keys()
+    target_hosts = nr.filter(device_type=device_type, vendor=vendor, mgmt_ip=mgmt_ip)
     # Print seperator
     print("=" * 50)
     print(
-        f"The host with device_type - {device_type} , vendor - {vendor} and mgmt_ip {mgmt_ip} is:"
+        f"The host with device_type: {device_type} , vendor: {vendor} and mgmt_ip: {mgmt_ip} is:"
     )
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+            + Fore.RESET
+            + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
+        )
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -261,13 +289,16 @@ def filter_vendor(nr, vendor):
     """
     print(f"Targeting vendor: {vendor}")
     target_vendor = nr.filter(vendor=vendor)
-    # Assign to variable for printouts
-    target_vendor_hosts = target_vendor.inventory.hosts.keys()
     # Print seperator
     print("=" * 50)
     print(f"The hosts which with vendor - {vendor} are:")
-    for host in target_vendor_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_vendor.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+        )
+    print(f"Total: {len(target_vendor.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
     return target_vendor
@@ -275,31 +306,37 @@ def filter_vendor(nr, vendor):
 
 def filter_dev_type(target_vendor, device_type):
     """"""
-    target_dev_type = target_vendor.filter(
-        device_type=device_type
-    ).inventory.hosts.keys()
+    target_dev_type = target_vendor.filter(device_type=device_type)
     print(f"Targeting device_type: {device_type}")
     # Print seperator
     print("=" * 50)
     print(f"The hosts which with device_type - {device_type} are:")
-    for host in target_dev_type:
-        print(f"Host: {Fore.CYAN}{host}")
+    for host, data in target_dev_type.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+        )
+    print(f"Total: {len(target_dev_type.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
 
 def filter_hemisphere(nr, hemisphere="southern"):
     """
-    TODO: Not working
     Filter all inventory based on hemisphere
     """
     # hemisphere = nr.filter(F(groups__data))
-    hemisphere_devs = nr.filter(F(groups__contains=hemisphere))
+    hemisphere_devs = nr.filter(F(hemisphere__eq=hemisphere))
     print(f"Devices in {hemisphere} hemisphere are:")
     print("=" * 50)
-    for host in hemisphere_devs.inventory.groups.keys():
-        print(f"Host: {Fore.CYAN}{host}")
-    print(f"Total: {len(hemisphere_devs.inventory.groups.keys())}")
+    for host, data in hemisphere_devs.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Hemisphere: {Fore.CYAN}{data['hemisphere']} "
+        )
+    print(f"Total: {len(hemisphere_devs.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
 
@@ -395,7 +432,7 @@ def filter_env_devices(nr, environment):
     print("=" * 50)
 
 
-def filter_sla(nr, sla):
+def filter_ge_sla(nr, sla):
     """
     Filter all inventory that does not equal a dev_type_a AND dev_type_b
     """
@@ -405,12 +442,151 @@ def filter_sla(nr, sla):
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
-            + f"- SLA: {Fore.CYAN}{data['sla']}"
+            + f"- SLA: {Fore.CYAN}{data['sla']} "
             + Fore.RESET
             + f"- Production: {Fore.CYAN}{data['production']}"
         )
     print(f"Total: {len(sla_devs.inventory.hosts.items())}")
     print("=" * 50)
+
+
+def filter_certified_os_version(nr, version_list=None):
+    """
+    Filter the entire inventory to find devices
+    running
+    """
+    # Specify a list of versions, which are deemed "certified"
+    # across the inventory
+    version_list = [
+        "10.0.3",  # panos certified version
+        "16.6.4",  # ios certified version
+        "4.23.2F",  # eos certified version
+        "9.3(6)",  # nxos certified version
+        "18.4R2-S5",  # junos certified version
+    ]
+    target_devices = nr.filter(F(os_version__any=version_list))
+    print(f"Certified OS version(s): {version_list}")
+    print(f"Host(s) running a certified OS version are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform} "
+            + Fore.RESET
+            + f"- OS Version: {Fore.CYAN}{data['os_version']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+
+
+def filter_non_certified_os_version(nr, version_list=None):
+    """
+    Filter the entire inventory to find devices
+    running
+    """
+    # Specify a list of versions, which are deemed "certified"
+    # across the inventory
+    version_list = [
+        "10.0.3",  # panos certified version
+        "16.6.4",  # ios certified version
+        "4.23.2F",  # eos certified version
+        "9.3(6)",  # nxos certified version
+        "18.4R2-S5",  # junos certified version
+    ]
+    target_devices = nr.filter(~F(os_version__any=version_list))
+    print(f"Certified OS version(s): {version_list}")
+    print(f"Host(s) NOT running a certified OS version are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform} "
+            + Fore.RESET
+            + f"- OS Version: {Fore.CYAN}{data['os_version']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_prod_non_certified_os_version(nr):
+    """"""
+    target_devices = nr.filter(F(production__eq=True))
+    print(f"Host(s) NOT running a certified OS version in Production are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform} "
+            + Fore.RESET
+            + f"- OS Version: {Fore.CYAN}{data['os_version']} "
+            + Fore.RESET
+            + f"- Production?: {Fore.CYAN}{data['production']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def filter_region(nr, region):
+    """"""
+    target_devices = nr.filter(F(region__eq=region))
+    print(f"Hosts in region {region} are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Region: {Fore.CYAN}{data['region']} "
+            + Fore.RESET
+            + f"- Country: {Fore.CYAN}{data['country']} "
+            + Fore.RESET
+            + f"- Full Name: {Fore.CYAN}{data['full_name']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    return target_devices
+
+
+def odd_device_naming_convention(host):
+    return bool(re.match(".+\-[0-9][1,3,5,7,9].+", host.name))
+
+
+def even_device_naming_convention(host):
+    return bool(re.match(".+\-[0-9][2,4,6,8,9].+", host.name))
+
+
+def odd_devices(nr):
+    """"""
+    # odd_string = re.match(".+\-01.+", name)
+    # some = re.match()
+    target_devices = nr.filter(filter_func=odd_device_naming_convention)
+    # print(f"Hosts in region {region} are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Region: {Fore.CYAN}{data['region']} "
+            + Fore.RESET
+            + f"- Country: {Fore.CYAN}{data['country']} "
+            + Fore.RESET
+            + f"- Full Name: {Fore.CYAN}{data['full_name']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+
+
+def even_devices(nr):
+    """"""
+    # odd_string = re.match(".+\-01.+", name)
+    # some = re.match()
+    target_devices = nr.filter(filter_func=even_device_naming_convention)
+    # print(f"Hosts in region {region} are:")
+    for host, data in target_devices.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Region: {Fore.CYAN}{data['region']} "
+            + Fore.RESET
+            + f"- Country: {Fore.CYAN}{data['country']} "
+            + Fore.RESET
+            + f"- Full Name: {Fore.CYAN}{data['full_name']}"
+        )
+    print(f"Total: {len(target_devices.inventory.hosts.items())}")
 
 
 """
@@ -419,13 +595,13 @@ Diagnostic/display functions
 # Initialise inventory
 nr = get_nr()
 # Display entire inventory
-display_inventory(nr)
+# display_inventory(nr)
 # Display host data structure
 display_host_dict(nr, host="lab-arista-01.lab.dfjt.local")
 # Display group data structure
-display_group_dict(nr, group="ios")
-display_group_dict(nr, group="test")
-display_group_dict(nr, group="ptl")
+# display_group_dict(nr, group="ios")
+# display_group_dict(nr, group="test")
+# display_group_dict(nr, group="ptl")
 """
 Basic filter functions
 """
@@ -448,10 +624,16 @@ Intermediate filter functions
 """
 Advanced filter functions
 """
-# filter_hemisphere(nr)
-# filter_eq_site_code(nr, site_code="mel")
+# filter_hemisphere(nr, hemisphere="northern")
+# filter_eq_site_code(nr, site_code="mtl")
 # filter_neq_site_code(nr, site_code="mel")
-# filter_or_site_code(nr, site_code_a="mel", site_code_b="chc")
+# filter_or_site_code(nr, site_code_a="ptl", site_code_b="chc")
 # filter_not_and_dev_type(nr, dev_type_a="switch", dev_type_b="router")
 # filter_env_devices(nr, environment="test")
-filter_sla(nr, sla=80)
+# filter_ge_sla(nr, sla=80)
+# filter_certified_os_version(nr)
+# non_cert_devs = filter_non_certified_os_version(nr)
+# filter_prod_non_certified_os_version(nr=non_cert_devs)
+# apac_devices = filter_region(nr, region="apac")
+odd_devices(nr)
+even_devices(nr)

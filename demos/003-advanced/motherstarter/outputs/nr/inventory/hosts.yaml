@@ -18,26 +18,26 @@ dfjt-r001.lab.dfjt.local:
     groups:
         - ios
         - lab
-        - mel
+        - bcn
     data:
         mgmt_ip: 10.0.0.1
         vendor: cisco
         device_type: router
         os_version: 16.6.3
-        site_code: mel
+        site_code: bcn
         
 lab-arista-01.lab.dfjt.local:
     hostname: lab-arista-01.lab.dfjt.local
     groups:
         - eos
         - lab
-        - mel
+        - mtl
     data:
         mgmt_ip: 10.0.0.11
         vendor: arista
         device_type: switch
         os_version: 4.22.0F
-        site_code: mel
+        site_code: mtl
         
 lab-arista-02.lab.dfjt.local:
     hostname: lab-arista-02.lab.dfjt.local
@@ -57,26 +57,26 @@ lab-junos-01.lab.dfjt.local:
     groups:
         - junos
         - lab
-        - mel
+        - mtl
     data:
         mgmt_ip: 10.0.0.15
         vendor: juniper
         device_type: router
         os_version: 18.4R2-S5
-        site_code: mel
+        site_code: mtl
         
 lab-nxos-01.lab.dfjt.local:
     hostname: lab-nxos-01.lab.dfjt.local
     groups:
         - nxos
         - lab
-        - mel
+        - mtl
     data:
         mgmt_ip: 10.0.0.14
         vendor: cisco
         device_type: switch
         os_version: 9.3(6)
-        site_code: mel
+        site_code: mtl
         
 lab-paloalto-01.lab.dfjt.local:
     hostname: lab-paloalto-01.lab.dfjt.local
@@ -96,13 +96,13 @@ lab-paloalto-02.lab.dfjt.local:
     groups:
         - panos
         - lab
-        - mel
+        - bcn
     data:
         mgmt_ip: 10.0.0.22
         vendor: palo alto
         device_type: firewall
         os_version: 9.1.3-h1
-        site_code: mel
+        site_code: bcn
         
 lab-junos-06.lab.dfjt.local:
     hostname: lab-junos-06.lab.dfjt.local
@@ -265,39 +265,39 @@ tst-arista-01.tst.dfjt.local:
     groups:
         - eos
         - test
-        - mel
+        - ptl
     data:
         mgmt_ip: 10.0.32.11
         vendor: arista
         device_type: switch
         os_version: 4.21.1F
-        site_code: mel
+        site_code: ptl
         
 tst-arista-02.tst.dfjt.local:
     hostname: tst-arista-02.tst.dfjt.local
     groups:
         - eos
         - test
-        - mel
+        - ptl
     data:
         mgmt_ip: 10.0.32.18
         vendor: arista
         device_type: switch
         os_version: 4.21.1F
-        site_code: mel
+        site_code: ptl
         
 tst-junos-01.tst.dfjt.local:
     hostname: tst-junos-01.tst.dfjt.local
     groups:
         - junos
         - test
-        - mel
+        - ptl
     data:
         mgmt_ip: 10.0.32.15
         vendor: juniper
         device_type: router
         os_version: 15.1R7-S6
-        site_code: mel
+        site_code: ptl
         
 tst-nxos-01.tst.dfjt.local:
     hostname: tst-nxos-01.tst.dfjt.local
