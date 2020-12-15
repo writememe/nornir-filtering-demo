@@ -21,7 +21,7 @@ dirname = os.path.dirname(os.path.abspath(__file__))
 
 def get_nr():
     """
-    Initialises a Nornir inventory using various configuration files
+    Initialises a Nornir inventory using various configuration files.
 
     :return nr: An initialised Nornir inventory for use in other functions.
     """
@@ -52,18 +52,16 @@ def display_inventory(nr):
     # Print seperator line and hosts header
     print("=" * 50)
     print("HOSTS IN INVENTORY")
-    # Iterate over hosts in inventory
+    # Iterate over hosts in inventory and printout hosts
     for host in nr.inventory.hosts.keys():
-        # Print the hosts in the inventory
         print(f"Host: {Fore.CYAN}{host}")
     print(f"There are {len(nr.inventory.hosts.keys())} hosts in this inventory.")
     print("=" * 50)
     # Print seperator line and hosts header
     print("=" * 50)
     print("GROUPS IN INVENTORY")
-    # Iterate over groups in inventory
+    # Iterate over hosts in inventory and printout groups
     for group in nr.inventory.groups.keys():
-        # Print the groups in the inventory
         print(f"Group: {Fore.CYAN}{group}")
     print(f"There are {len(nr.inventory.groups.keys())} groups in this inventory.")
     print("=" * 50)
@@ -76,6 +74,8 @@ def display_host_dict(nr, host):
     :param nr: An initialised Nornir inventory, used for processing.
     :param host: The host you want to filter on.
     :type host: string
+
+    :return target_host: The targeted nornir host object.
     """
     # Filter all the hosts in the inventory, using the host passed in
     # at the top of the function.
@@ -89,6 +89,9 @@ def display_host_dict(nr, host):
     print(f"{host_dict_data}")
     # Print seperator
     print("=" * 50)
+    print(type(target_host))
+    # Return target host
+    return target_host
 
 
 def display_group_dict(nr, group):
@@ -98,19 +101,23 @@ def display_group_dict(nr, group):
     :param nr: An initialised Nornir inventory, used for processing.
     :param group: The group you want to filter on.
     :type group: string
+
+    :return target_group: The targeted nornir group object.
     """
     # Filter all the groups in the inventory, using the host passed in
     # at the top of the function.
     target_group = nr.inventory.groups[group]
     # Dump the groups data structure to an indented variable
-    host_group_data = json.dumps(target_group.dict(), indent=4)
+    group_dict_data = json.dumps(target_group.dict(), indent=4)
     # Print seperator
     print("=" * 50)
     # Print header and host data structure
     print("Displaying information for group: " + Fore.CYAN + f"{group}")
-    print(f"{host_group_data}")
+    print(f"{group_dict_data}")
     # Print seperator
     print("=" * 50)
+    # Return target group
+    return target_group
 
 
 def filter_host_platform(nr, platform):
@@ -120,20 +127,27 @@ def filter_host_platform(nr, platform):
     :param nr: An initialised Nornir inventory, used for processing.
     :param platform: The type of platform you want to filter on.
     :type platform: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on platform
     target_hosts = nr.filter(platform=platform)
-    # Print seperator
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have platform {platform} are:")
+    # Iterate over filtered results and printout information
     for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Platform: {Fore.CYAN}{data.platform}"
         )
+    # Print total and seperator
     print(f"Total: {len(target_hosts.inventory.hosts.items())}")
-    # Print seperator
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_host_vendor(nr, vendor):
@@ -143,20 +157,27 @@ def filter_host_vendor(nr, vendor):
     :param nr: An initialised Nornir inventory, used for processing.
     :param vendor: The type of vendor you want to filter on.
     :type vendor: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on vendor
     target_hosts = nr.filter(vendor=vendor)
-    # Print seperator
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have vendor {vendor} are:")
+    # Iterate over filtered results and printout information
     for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Vendor: {Fore.CYAN}{data['vendor']}"
         )
+    # Print total and seperator
     print(f"Total: {len(target_hosts.inventory.hosts.items())}")
-    # Print seperator
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_host_mgmt_ip(nr, mgmt_ip):
@@ -167,48 +188,76 @@ def filter_host_mgmt_ip(nr, mgmt_ip):
     :param nr: An initialised Nornir inventory, used for processing.
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on management IP address
     target_hosts = nr.filter(mgmt_ip=mgmt_ip)
-    # Print seperator
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have the management IP address {mgmt_ip} is:")
+    # Iterate over filtered results and printout information
     for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
         )
+    # Print total and seperator
     print(f"Total: {len(target_hosts.inventory.hosts.items())}")
-    # Print seperator
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_group_platform(nr, platform):
     """
+    TODO: This function doesn't work
     Filter the groups inventory, based on a certain platform.
 
     :param nr: An initialised Nornir inventory, used for processing.
     :param platform: The type of platform you want to filter on.
     :type platform: string
+
+    :return target_groups: The targeted nornir groups after being
+    processed through nornir filtering.
     """
-    target_groups = nr.filter(platform=platform).inventory.groups.keys()
-    # Print seperator
+    # Execute filter based on platform
+    target_groups = nr.filter(platform=platform)
+    print(type(target_groups))
+    # Print seperator and header
     print("=" * 50)
     print(f"The groups which have platform {platform} are:")
-    for group in target_groups:
-        print(f"Group: {Fore.CYAN}{group}")
+
+    # Iterate over filtered results and printout information
+    for group, data in target_groups.inventory.groups.items():
+        print(
+            f"Group: {Fore.CYAN}{group} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform}"
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_groups.inventory.hosts.items())}")
     # Print seperator
     print("=" * 50)
+    # Return filtered groups
+    return target_groups
 
 
 def filter_group_vendor(nr, vendor):
     """
+    TODO: This function doesn't work
     Filter the groups inventory, based on a certain vendor.
 
     :param nr: An initialised Nornir inventory, used for processing.
     :param vendor: The type of vendor you want to filter on.
     :type vendor: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on vendor
     target_groups = nr.filter(vendor=vendor).inventory.groups.keys()
     # Print seperator
     print("=" * 50)
@@ -217,6 +266,8 @@ def filter_group_vendor(nr, vendor):
         print(f"Group: {Fore.CYAN}{group}")
     # Print seperator
     print("=" * 50)
+    # Return filtered groups
+    return target_groups
 
 
 def filter_host_dev_type_vendor(nr, device_type, vendor):
@@ -228,11 +279,16 @@ def filter_host_dev_type_vendor(nr, device_type, vendor):
     :param nr: An initialised Nornir inventory, used for processing.
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on device type AND vendor
     target_hosts = nr.filter(device_type=device_type, vendor=vendor)
-    # Print seperator
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts with device_type: {device_type} and vendor: {vendor} are:")
+    # Iterate over filtered results and printout information
     for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
@@ -241,9 +297,11 @@ def filter_host_dev_type_vendor(nr, device_type, vendor):
             + Fore.RESET
             + f"- Vendor: {Fore.CYAN}{data['vendor']} "
         )
+    # Print total and seperator
     print(f"Total: {len(target_hosts.inventory.hosts.items())}")
-    # Print seperator
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
@@ -256,13 +314,18 @@ def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
     :param nr: An initialised Nornir inventory, used for processing.
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
+    # Execute filter based on device type AND vendor AND mgmt_ip
     target_hosts = nr.filter(device_type=device_type, vendor=vendor, mgmt_ip=mgmt_ip)
-    # Print seperator
+    # Print seperator and header
     print("=" * 50)
     print(
         f"The host with device_type: {device_type} , vendor: {vendor} and mgmt_ip: {mgmt_ip} is:"
     )
+    # Iterate over filtered results and printout information
     for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
@@ -273,9 +336,11 @@ def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
             + Fore.RESET
             + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
         )
+    # Print total and seperator
     print(f"Total: {len(target_hosts.inventory.hosts.items())}")
-    # Print seperator
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_vendor(nr, vendor):
@@ -286,159 +351,226 @@ def filter_vendor(nr, vendor):
     :param nr: An initialised Nornir inventory, used for processing.
     :param mgmt_ip: The management IP to filter on.
     :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    print(f"Targeting vendor: {vendor}")
-    target_vendor = nr.filter(vendor=vendor)
-    # Print seperator
+    # Execute filter based on vendor
+    target_hosts = nr.filter(vendor=vendor)
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which with vendor - {vendor} are:")
-    for host, data in target_vendor.inventory.hosts.items():
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Vendor: {Fore.CYAN}{data['vendor']} "
         )
-    print(f"Total: {len(target_vendor.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
-    return target_vendor
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_dev_type(target_vendor, device_type):
-    """"""
-    target_dev_type = target_vendor.filter(device_type=device_type)
-    print(f"Targeting device_type: {device_type}")
-    # Print seperator
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on device type
+    target_hosts = target_vendor.filter(device_type=device_type)
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which with device_type - {device_type} are:")
-    for host, data in target_dev_type.inventory.hosts.items():
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Device Type: {Fore.CYAN}{data['device_type']} "
         )
-    print(f"Total: {len(target_dev_type.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_hemisphere(nr, hemisphere="southern"):
     """
-    Filter all inventory based on hemisphere
+    Filter all inventory based on hemisphere.
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    # hemisphere = nr.filter(F(groups__data))
-    hemisphere_devs = nr.filter(F(hemisphere__eq=hemisphere))
-    print(f"Devices in {hemisphere} hemisphere are:")
+    # Execute filter based on hemisphere
+    target_hosts = nr.filter(F(hemisphere__eq=hemisphere))
+    # Print seperator and header
     print("=" * 50)
-    for host, data in hemisphere_devs.inventory.hosts.items():
+    print(f"The hosts with {hemisphere} hemisphere are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Hemisphere: {Fore.CYAN}{data['hemisphere']} "
         )
-    print(f"Total: {len(hemisphere_devs.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_eq_site_code(nr, site_code):
     """
     Filter all inventory based on site_code
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    site_code_devs = nr.filter(F(site_code__eq=site_code))
-    print(f"Hosts with site code - {site_code} are:")
+    # Execute filter based on site code
+    target_hosts = nr.filter(F(site_code__eq=site_code))
+    # Print seperator and header
     print("=" * 50)
-    for host, data in site_code_devs.inventory.hosts.items():
+    print(f"The hosts with site code - {site_code} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Site Code: {Fore.CYAN}{data['site_code']}"
         )
-    print(f"Total: {len(site_code_devs.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_neq_site_code(nr, site_code):
     """
     Filter all inventory that does not equal a site_code
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    not_site_code_devs = nr.filter(~F(site_code__eq=site_code))
-    print(f"Hosts WITHOUT site code - {site_code} are:")
+    # Execute filter based on devices not equal to the site code
+    target_hosts = nr.filter(~F(site_code__eq=site_code))
+    # Print seperator and header
     print("=" * 50)
-    for host, data in not_site_code_devs.inventory.hosts.items():
+    print(f"The hosts WITHOUT site code - {site_code} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Site Code: {Fore.CYAN}{data['site_code']}"
         )
-    print(f"Total: {len(not_site_code_devs.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_or_site_code(nr, site_code_a, site_code_b):
     """
     Filter all inventory that equals a site_code_a OR site_code_b
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    two_site_code_devs = nr.filter(
+    # Execute filter based on site_code_a OR site_code_b
+    target_hosts = nr.filter(
         F(site_code__eq=site_code_a) | F(site_code__eq=site_code_b)
     )
-    print(f"Hosts with site code - {site_code_a} or {site_code_b} are:")
+    # Print seperator and header
     print("=" * 50)
-    for host, data in two_site_code_devs.inventory.hosts.items():
+    print(f"The hosts with site code - {site_code_a} or {site_code_b} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Site Code: {Fore.CYAN}{data['site_code']}"
         )
-    print(f"Total: {len(two_site_code_devs.inventory.hosts.items())}")
-    # Print seperator
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_not_and_dev_type(nr, dev_type_a, dev_type_b):
     """
     Filter all inventory that does not equal a dev_type_a AND dev_type_b
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    not_two_dev_type_devs = nr.filter(
+    # Execute filter not equal to on dev_type_a OR dev_type_b
+    target_hosts = nr.filter(
         ~F(device_type__eq=dev_type_a) & ~F(device_type__eq=dev_type_b)
     )
-    print(f"Hosts which are NOT device_type - {dev_type_a} AND {dev_type_b} are:")
+    # Print seperator and header
     print("=" * 50)
-    # TODO: Refactor code to use this
-    for host, data in not_two_dev_type_devs.inventory.hosts.items():
+    print(f"The hosts which are NOT device_type - {dev_type_a} AND {dev_type_b} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
             + f"- Device Type: {Fore.CYAN}{data['device_type']}"
         )
-    print(f"Total: {len(not_two_dev_type_devs.inventory.hosts.items())}")
-    # Print seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_env_devices(nr, environment):
     """
     Filter all inventory that does not equal a dev_type_a AND dev_type_b
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    env_devs = nr.inventory.children_of_group(environment)
-    print(f"Hosts which are children of group {environment} are:")
+    # Execute filter based hosts being children of a group
+    target_hosts = nr.inventory.children_of_group(environment)
+    # Print seperator and header
     print("=" * 50)
-    for host in env_devs:
+    print(f"The hosts which are children of group {environment} are:")
+    # Iterate over filtered results and printout information
+    for host in target_hosts:
         print(f"Host: {Fore.CYAN}{host}")
-    print(f"Total: {len(env_devs)}")
-    # Print seperator
+    print(f"Total: {len(target_hosts)}")
+    # Print total and seperator
+    print(f"Total: {len(list(target_hosts))}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_ge_sla(nr, sla):
     """
     Filter all inventory that does not equal a dev_type_a AND dev_type_b
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    sla_devs = nr.filter(F(sla__ge=sla))
-    print(f"Groups with SLA greater or equal to {sla} are:")
-    for host, data in sla_devs.inventory.hosts.items():
+    # Execute filter based greater or equal to the SLA integer
+    target_hosts = nr.filter(F(sla__ge=sla))
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts with SLA greater or equal to {sla} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -446,14 +578,20 @@ def filter_ge_sla(nr, sla):
             + Fore.RESET
             + f"- Production: {Fore.CYAN}{data['production']}"
         )
-    print(f"Total: {len(sla_devs.inventory.hosts.items())}")
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_certified_os_version(nr, version_list=None):
     """
     Filter the entire inventory to find devices
     running
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
     # Specify a list of versions, which are deemed "certified"
     # across the inventory
@@ -464,10 +602,14 @@ def filter_certified_os_version(nr, version_list=None):
         "9.3(6)",  # nxos certified version
         "18.4R2-S5",  # junos certified version
     ]
-    target_devices = nr.filter(F(os_version__any=version_list))
+    # Execute filter based on hosts matching any of the certified versions
+    target_hosts = nr.filter(F(os_version__any=version_list))
+    # Print seperator and header
+    print("=" * 50)
     print(f"Certified OS version(s): {version_list}")
-    print(f"Host(s) running a certified OS version are:")
-    for host, data in target_devices.inventory.hosts.items():
+    print(f"The hosts running a certified OS version are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -475,13 +617,20 @@ def filter_certified_os_version(nr, version_list=None):
             + Fore.RESET
             + f"- OS Version: {Fore.CYAN}{data['os_version']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_non_certified_os_version(nr, version_list=None):
     """
     Filter the entire inventory to find devices
     running
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
     # Specify a list of versions, which are deemed "certified"
     # across the inventory
@@ -492,10 +641,14 @@ def filter_non_certified_os_version(nr, version_list=None):
         "9.3(6)",  # nxos certified version
         "18.4R2-S5",  # junos certified version
     ]
-    target_devices = nr.filter(~F(os_version__any=version_list))
+    # Execute filter based on hosts NOT matching any of the certified versions
+    target_hosts = nr.filter(~F(os_version__any=version_list))
+    # Print seperator and header
+    print("=" * 50)
     print(f"Certified OS version(s): {version_list}")
-    print(f"Host(s) NOT running a certified OS version are:")
-    for host, data in target_devices.inventory.hosts.items():
+    print(f"The hosts NOT running a certified OS version are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -503,15 +656,25 @@ def filter_non_certified_os_version(nr, version_list=None):
             + Fore.RESET
             + f"- OS Version: {Fore.CYAN}{data['os_version']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
-def filter_prod_non_certified_os_version(nr):
-    """"""
-    target_devices = nr.filter(F(production__eq=True))
-    print(f"Host(s) NOT running a certified OS version in Production are:")
-    for host, data in target_devices.inventory.hosts.items():
+def filter_production_hosts(nr):
+    """
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on hosts being in production
+    target_hosts = nr.filter(F(production__eq=True))
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts running in Production are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -521,15 +684,25 @@ def filter_prod_non_certified_os_version(nr):
             + Fore.RESET
             + f"- Production?: {Fore.CYAN}{data['production']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_region(nr, region):
-    """"""
-    target_devices = nr.filter(F(region__eq=region))
-    print(f"Hosts in region {region} are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on hosts in a region
+    target_hosts = nr.filter(F(region__eq=region))
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts in region {region} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -539,23 +712,38 @@ def filter_region(nr, region):
             + Fore.RESET
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def odd_device_naming_convention(host):
+    """
+    TODO: Doco function
+    """
     return bool(re.match(".+\-[0-9][1,3,5,7,9].+", host.name))
 
 
 def even_device_naming_convention(host):
+    """
+    TODO: Doco function
+    """
     return bool(re.match(".+\-[0-9][2,4,6,8,0].+", host.name))
 
 
 def test_domain_name_convention(host):
+    """
+    TODO: Doco function
+    """
     return bool(re.match(".+.tst.dfjt.local$", host.name))
 
 
 def device_name_convention(host):
+    """
+    TODO: Doco function
+    """
     if re.match("\w{3}\-\w+\-\d{2}.\w{3}.dfjt.local", host.name):
         return True
     else:
@@ -563,7 +751,9 @@ def device_name_convention(host):
 
 
 def non_device_name_convention(host):
-
+    """
+    TODO: Doco function
+    """
     if re.match("\w{3}\-\w+\-\d{2}.\w{3}.dfjt.local", host.name):
         return False
     else:
@@ -571,10 +761,18 @@ def non_device_name_convention(host):
 
 
 def filter_odd_devices(nr):
-    """"""
-    target_devices = nr.filter(filter_func=odd_device_naming_convention)
-    # print(f"Hosts in region {region} are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering."""
+    # Execute filter which calls a function to detect hosts with an
+    # odd number in their naming convention
+    target_hosts = nr.filter(filter_func=odd_device_naming_convention)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which match the odd naming convention are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -584,15 +782,27 @@ def filter_odd_devices(nr):
             + Fore.RESET
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_even_devices(nr):
-    """"""
-    target_devices = nr.filter(filter_func=even_device_naming_convention)
-    print(f"Hosts in domain-name are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter which calls a function to detect hosts with an
+    # even number in their naming convention
+    target_hosts = nr.filter(filter_func=even_device_naming_convention)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which match the even naming convention are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -602,44 +812,92 @@ def filter_even_devices(nr):
             + Fore.RESET
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_test_domain_devices(nr):
-    """"""
-    target_devices = nr.filter(filter_func=test_domain_name_convention)
-    print(f"Hosts in domain-name are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter which calls a function to detect hosts with a
+    # test domain-name in their naming convention
+    target_hosts = nr.filter(filter_func=test_domain_name_convention)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which match the test domain-name naming convention are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(f"Host: {Fore.CYAN}{host} ")
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_device_name_convention(nr):
-    """"""
-    target_devices = nr.filter(filter_func=device_name_convention)
-    print(f"Hosts which comply with naming convention:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter which calls a function to detect hosts which
+    # match a pre-defined naming convention
+    target_hosts = nr.filter(filter_func=device_name_convention)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which match the device naming convention are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(f"Host: {Fore.CYAN}{host} ")
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_device_name_non_convention(nr):
-    """"""
-    target_devices = nr.filter(filter_func=non_device_name_convention)
-    print(f"Hosts which do NOT comply with naming convention:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter which calls a function to detect hosts which do not
+    # match a pre-defined naming convention
+    target_hosts = nr.filter(filter_func=non_device_name_convention)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which do NOT match the device naming convention are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(f"Host: {Fore.CYAN}{host} ")
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_site_type(nr, site_type):
-    target_devices = nr.filter(F(site_type__eq=site_type))
-    print(f"Hosts which match site type {site_type} are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on site type
+    target_hosts = nr.filter(F(site_type__eq=site_type))
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which match site type {site_type} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -649,14 +907,26 @@ def filter_site_type(nr, site_type):
             + Fore.RESET
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_non_primary_site_type(nr):
-    target_devices = nr.filter(F(site_type__any=["tertiary", "secondary"]))
-    print(f"Hosts which are at non-primary site types are:")
-    for host, data in target_devices.inventory.hosts.items():
+    """
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter which the site_type of secondary OR tertiary
+    target_hosts = nr.filter(F(site_type__any=["tertiary", "secondary"]))
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which are at non-primary site types are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
         print(
             f"Host: {Fore.CYAN}{host} "
             + Fore.RESET
@@ -666,8 +936,11 @@ def filter_non_primary_site_type(nr):
             + Fore.RESET
             + f"- Full Name: {Fore.CYAN}{data['full_name']}"
         )
-    print(f"Total: {len(target_devices.inventory.hosts.items())}")
-    return target_devices
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 """
@@ -680,49 +953,49 @@ display_inventory(nr)
 # Display host data structure
 display_host_dict(nr, host="lab-arista-01.lab.dfjt.local")
 # Display group data structure
-# display_group_dict(nr, group="ios")
-# display_group_dict(nr, group="test")
-# display_group_dict(nr, group="ptl")
+display_group_dict(nr, group="ios")
+display_group_dict(nr, group="test")
+display_group_dict(nr, group="ptl")
 """
 Basic filter functions
 """
-# filter_host_vendor(nr, vendor="arista")
-# filter_group_vendor(nr, vendor="cisco")
-# filter_host_platform(nr, platform="ios")
-# filter_group_platform(nr, platform="nxos_ssh")
-# filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
+filter_host_vendor(nr, vendor="arista")
+filter_group_vendor(nr, vendor="cisco")
+filter_host_platform(nr, platform="ios")
+filter_group_platform(nr, platform="nxos_ssh")
+filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
 """
 Intermediate filter functions
 """
-# filter_host_dev_type_vendor(nr, device_type="switch", vendor="juniper")
-# filter_host_dev_type_vendor_mgmt_ip(
-#     nr, device_type="switch", vendor="juniper", mgmt_ip="10.0.0.23"
-# )
-# cisco_devices = filter_vendor(nr, vendor="cisco")
-# filter_dev_type(target_vendor=cisco_devices, device_type="router")
-# filter_dev_type(target_vendor=cisco_devices, device_type="switch")
-# filter_dev_type(target_vendor=cisco_devices, device_type="firewall")
+filter_host_dev_type_vendor(nr, device_type="switch", vendor="juniper")
+filter_host_dev_type_vendor_mgmt_ip(
+    nr, device_type="switch", vendor="juniper", mgmt_ip="10.0.0.23"
+)
+cisco_devices = filter_vendor(nr, vendor="cisco")
+filter_dev_type(target_vendor=cisco_devices, device_type="router")
+filter_dev_type(target_vendor=cisco_devices, device_type="switch")
+filter_dev_type(target_vendor=cisco_devices, device_type="firewall")
 """
 Advanced filter functions
 """
-# filter_hemisphere(nr, hemisphere="northern")
-# filter_eq_site_code(nr, site_code="mtl")
-# filter_neq_site_code(nr, site_code="mel")
-# filter_or_site_code(nr, site_code_a="ptl", site_code_b="chc")
-# filter_not_and_dev_type(nr, dev_type_a="switch", dev_type_b="router")
-# filter_env_devices(nr, environment="test")
-# filter_ge_sla(nr, sla=80)
-# filter_certified_os_version(nr)
-# non_cert_devs = filter_non_certified_os_version(nr)
-# filter_prod_non_certified_os_version(nr=non_cert_devs)
-# apac_devices = filter_region(nr, region="apac")
-# filter_odd_devices(nr)
-# filter_even_devices(nr)
-# filter_test_domain_devices(nr)
+filter_hemisphere(nr, hemisphere="northern")
+filter_eq_site_code(nr, site_code="mtl")
+filter_neq_site_code(nr, site_code="mel")
+filter_or_site_code(nr, site_code_a="ptl", site_code_b="chc")
+filter_not_and_dev_type(nr, dev_type_a="switch", dev_type_b="router")
+filter_env_devices(nr, environment="test")
+filter_ge_sla(nr, sla=80)
+filter_certified_os_version(nr)
+non_cert_devs = filter_non_certified_os_version(nr)
+filter_production_hosts(nr=non_cert_devs)
+apac_devices = filter_region(nr, region="apac")
+filter_odd_devices(nr)
+filter_even_devices(nr)
+filter_test_domain_devices(nr)
 filter_device_name_convention(nr)
 filter_device_name_non_convention(nr)
-# filter_site_type(nr, site_type="primary")
-# filter_non_primary_site_type(nr)
+filter_site_type(nr, site_type="primary")
+filter_non_primary_site_type(nr)
 """
 Chaining filters together
 """
