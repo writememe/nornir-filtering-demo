@@ -1,0 +1,6 @@
+# Non-pinned requirements file
+bandit
+black
+pylama
+motherstarter
+nornir

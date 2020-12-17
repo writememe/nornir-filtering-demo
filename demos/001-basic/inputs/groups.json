@@ -1,0 +1,32 @@
+[
+    {
+        "name": "ios",
+        "platform": "ios",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "junos",
+        "platform": "junos",
+        "vendor": "Juniper"
+    },
+    {
+        "name": "eos",
+        "platform": "eos",
+        "vendor": "Arista"
+    },
+    {
+        "name": "nxos",
+        "platform": "nxos",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "nxos_ssh",
+        "platform": "nxos_ssh",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "panos",
+        "platform": "paloalto_panos",
+        "vendor": "Palo Alto"
+    }
+]

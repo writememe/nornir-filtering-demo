@@ -1,0 +1,218 @@
+[
+    {
+        "name": "lab-csr-011.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "lab",
+        "device_type": "router"
+    },
+    {
+        "name": "dfjt-r001.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "lab",
+        "device_type": "router"
+    },
+    {
+        "name": "lab-arista-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "lab",
+        "device_type": "switch"
+    },
+    {
+        "name": "lab-arista-02.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "lab",
+        "device_type": "switch"
+    },
+    {
+        "name": "lab-junos-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "lab",
+        "device_type": "router"
+    },
+    {
+        "name": "lab-nxos-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "lab",
+        "device_type": "switch"
+    },
+    {
+        "name": "lab-paloalto-01.lab.djft.local",
+        "mgmt_ip": "10.0.0.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "lab",
+        "device_type": "firewall"
+    },
+    {
+        "name": "lab-paloalto-02.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "lab",
+        "device_type": "firewall"
+    },
+    {
+        "name": "lab-junos-06.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "lab",
+        "device_type": "switch"
+    },
+    {
+        "name": "prd-csr-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "prod",
+        "device_type": "router"
+    },
+    {
+        "name": "dfjt-r001.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "prod",
+        "device_type": "router"
+    },
+    {
+        "name": "prd-arista-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "prod",
+        "device_type": "switch"
+    },
+    {
+        "name": "prd-arista-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "prod",
+        "device_type": "switch"
+    },
+    {
+        "name": "prd-junos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "prod",
+        "device_type": "router"
+    },
+    {
+        "name": "prd-nxos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "prod",
+        "device_type": "switch"
+    },
+    {
+        "name": "prd-paloalto-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "prod",
+        "device_type": "firewall"
+    },
+    {
+        "name": "prd-paloalto-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "prod",
+        "device_type": "firewall"
+    },
+    {
+        "name": "prd-junos-06.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "prod",
+        "device_type": "switch"
+    },
+    {
+        "name": "tst-csr-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "test",
+        "device_type": "router"
+    },
+    {
+        "name": "dfjt-r001.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "test",
+        "device_type": "router"
+    },
+    {
+        "name": "tst-arista-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "test",
+        "device_type": "switch"
+    },
+    {
+        "name": "tstt-arista-02.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "test",
+        "device_type": "switch"
+    },
+    {
+        "name": "tst-junos-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "test",
+        "device_type": "router"
+    },
+    {
+        "name": "tst-nxos-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "test",
+        "device_type": "switch"
+    },
+    {
+        "name": "tst-paloalto-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "test",
+        "device_type": "firewall"
+    },
+    {
+        "name": "tst-paloalto-02.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "test",
+        "device_type": "firewall"
+    },
+    {
+        "name": "tst-junos-06.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "test",
+        "device_type": "switch"
+    }
+]

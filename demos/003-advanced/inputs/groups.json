@@ -1,0 +1,95 @@
+[
+    {
+        "name": "ios",
+        "platform": "ios",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "junos",
+        "platform": "junos",
+        "vendor": "Juniper"
+    },
+    {
+        "name": "eos",
+        "platform": "eos",
+        "vendor": "Arista"
+    },
+    {
+        "name": "nxos",
+        "platform": "nxos",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "nxos_ssh",
+        "platform": "nxos_ssh",
+        "vendor": "Cisco"
+    },
+    {
+        "name": "panos",
+        "platform": "paloalto_panos",
+        "vendor": "Palo Alto"
+    },
+    {
+        "name": "lab",
+        "sla": "70",
+        "production": "false"
+    },
+    {
+        "name": "prod",
+        "sla": "90",
+        "production": "true"
+    },
+    {
+        "name": "test",
+        "sla": "80",
+        "production": "false"
+    },
+    {
+        "name": "mel",
+        "full_name": "Melbourne",
+        "country": "Australia",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "primary"
+    },
+    {
+        "name": "hbt",
+        "full_name": "Hobart",
+        "country": "Australia",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "tertiary"
+    },
+    {
+        "name": "chc",
+        "full_name": "Christchurch",
+        "country": "New Zealand",
+        "region": "apac",
+        "hemisphere": "southern",
+        "site_type": "secondary"
+    },
+    {
+        "name": "ptl",
+        "full_name": "Port Louis",
+        "country": "Mauritius",
+        "region": "amea",
+        "hemisphere": "southern",
+        "site_type": "primary"
+    },
+    {
+        "name": "mtl",
+        "full_name": "Montreal",
+        "country": "Canada",
+        "region": "amer",
+        "hemisphere": "northern",
+        "site_type": "primary"     
+    },
+    {
+        "name": "bcn",
+        "full_name": "Barcelona",
+        "country": "Spain",
+        "region": "amea",
+        "hemisphere": "northern",
+        "site_type": "primary"
+    }
+]

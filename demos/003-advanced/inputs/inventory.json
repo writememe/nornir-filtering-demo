@@ -1,0 +1,272 @@
+[
+    {
+        "name": "lab-csr-011.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "lab",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "16.6.4"
+    },
+    {
+        "name": "dfjt-r001.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "lab",
+        "device_type": "router",
+        "site_code": "bcn",
+        "os_version": "16.6.3"
+    },
+    {
+        "name": "lab-arista-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "lab",
+        "device_type": "switch",
+        "site_code": "mtl",
+        "os_version": "4.22.0F"
+    },
+    {
+        "name": "lab-arista-02.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "lab",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "4.23.2F"
+    },
+    {
+        "name": "lab-junos-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "lab",
+        "device_type": "router",
+        "site_code": "mtl",
+        "os_version": "18.4R2-S5"
+    },
+    {
+        "name": "lab-nxos-01.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "lab",
+        "device_type": "switch",
+        "site_code": "mtl",
+        "os_version": "9.3(6)"
+    },
+    {
+        "name": "lab-paloalto-01.lab.djft.local",
+        "mgmt_ip": "10.0.0.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "lab",
+        "device_type": "firewall",
+        "site_code": "mel",
+        "os_version": "10.0.3"
+    },
+    {
+        "name": "lab-paloalto-02.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "lab",
+        "device_type": "firewall",
+        "site_code": "bcn",
+        "os_version": "9.1.3-h1"
+    },
+    {
+        "name": "lab-junos-06.lab.dfjt.local",
+        "mgmt_ip": "10.0.0.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "lab",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "18.4R2-S5"
+    },
+    {
+        "name": "prd-csr-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "prod",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "16.6.4"
+    },
+    {
+        "name": "dfjt-r001.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "prod",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "16.6.3"
+    },
+    {
+        "name": "prd-arista-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "prod",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "4.21.1F"
+    },
+    {
+        "name": "prd-arista-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "prod",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "4.23.1F"
+    },
+    {
+        "name": "prd-junos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "prod",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "15.1R7-S6"
+    },
+    {
+        "name": "prd-nxos-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "prod",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "7.0(3)"
+    },
+    {
+        "name": "prd-paloalto-01.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "prod",
+        "device_type": "firewall",
+        "site_code": "mel",
+        "os_version": "10.0.3"
+    },
+    {
+        "name": "prd-paloalto-02.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "prod",
+        "device_type": "firewall",
+        "site_code": "mel",
+        "os_version": "9.1.6"
+    },
+    {
+        "name": "prd-junos-06.prd.dfjt.local",
+        "mgmt_ip": "10.0.16.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "prod",
+        "device_type": "switch",
+        "site_code": "mel",
+        "os_version": "12.1R3-S4"
+    },
+    {
+        "name": "tst-csr-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.16",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "test",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "16.6.4"
+    },
+    {
+        "name": "dfjt-r001.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.1",
+        "vendor": "cisco",
+        "operating_system": "ios",
+        "environment": "test",
+        "device_type": "router",
+        "site_code": "mel",
+        "os_version": "15.1.4"
+    },
+    {
+        "name": "tst-arista-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.11",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "test",
+        "device_type": "switch",
+        "site_code": "ptl",
+        "os_version": "4.21.1F"
+    },
+    {
+        "name": "tstt-arista-02.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.18",
+        "vendor": "arista",
+        "operating_system": "eos",
+        "environment": "test",
+        "device_type": "switch",
+        "site_code": "ptl",
+        "os_version": "4.21.1F"
+    },
+    {
+        "name": "tst-junos-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.15",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "test",
+        "device_type": "router",
+        "site_code": "ptl",
+        "os_version": "15.1R7-S6"
+    },
+    {
+        "name": "tst-nxos-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.14",
+        "vendor": "cisco",
+        "operating_system": "nxos",
+        "environment": "test",
+        "device_type": "switch",
+        "site_code": "chc",
+        "os_version": "7.0(4)"
+    },
+    {
+        "name": "tst-paloalto-01.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.21",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "test",
+        "device_type": "firewall",
+        "site_code": "chc",
+        "os_version": "10.0.3"
+    },
+    {
+        "name": "tst-paloalto-02.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.22",
+        "vendor": "palo alto",
+        "operating_system": "panos",
+        "environment": "test",
+        "device_type": "firewall",
+        "site_code": "chc",
+        "os_version": "8.0.8"
+    },
+    {
+        "name": "tst-junos-06.tst.dfjt.local",
+        "mgmt_ip": "10.0.32.23",
+        "vendor": "juniper",
+        "operating_system": "junos",
+        "environment": "test",
+        "device_type": "switch",
+        "site_code": "chc",
+        "os_version": "12.1R3-S4"
+    }
+]
