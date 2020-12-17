@@ -208,9 +208,150 @@ def filter_host_mgmt_ip(nr, mgmt_ip):
     return target_hosts
 
 
+def filter_host_dev_type_vendor(nr, device_type, vendor):
+    """
+    Filter the hosts inventory, based on the following:
+    - device_type AND,
+    - vendor
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param device_type: The device type to filter on.
+    :type device_type: string
+    :param vendor: The vendor to filter on.
+    :type vendor: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on device type AND vendor
+    target_hosts = nr.filter(device_type=device_type, vendor=vendor)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts with device_type: {device_type} and vendor: {vendor} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
+
+
+def filter_host_dev_type_vendor_mgmt_ip(nr, device_type, vendor, mgmt_ip):
+    """
+    Filter the hosts inventory, based on the following:
+    - device_type AND,
+    - vendor AND,
+    - mgmt_ip
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param device_type: The device type to filter on.
+    :type device_type: string
+    :param vendor: The vendor to filter on.
+    :type vendor: string
+    :param mgmt_ip: The management IP to filter on.
+    :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on device type AND vendor AND mgmt_ip
+    target_hosts = nr.filter(device_type=device_type, vendor=vendor, mgmt_ip=mgmt_ip)
+    # Print seperator and header
+    print("=" * 50)
+    print(
+        f"The host with device_type: {device_type} , vendor: {vendor} and mgmt_ip: {mgmt_ip} is:"
+    )
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+            + Fore.RESET
+            + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
+
+
+def filter_vendor(nr, vendor):
+    """
+    Filter the hosts inventory, based on a certain management
+    IP address.
+
+    :param nr: An initialised Nornir inventory, used for processing.
+    :param vendor: The vendor to filter on.
+    :type vendor: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on vendor
+    target_hosts = nr.filter(vendor=vendor)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which with vendor - {vendor} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']} "
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
+
+
+def filter_dev_type(target_vendor, device_type):
+    """
+    Filter the already filtered inventory, based on device type.
+
+    :param target_vendor: A pre-filtered Nornir inventory, used for processing.
+    :param device_type: The device type to filter on.
+    :type device_type: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
+    """
+    # Execute filter based on device type
+    target_hosts = target_vendor.filter(device_type=device_type)
+    # Print seperator and header
+    print("=" * 50)
+    print(f"The hosts which with device_type - {device_type} are:")
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Device Type: {Fore.CYAN}{data['device_type']} "
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
+    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
+
+
 """
 Diagnostic/display functions
 """
+# Initialise inventory
 # Initialise inventory
 nr = get_nr()
 # Display entire inventory
@@ -223,6 +364,17 @@ display_group_dict(nr, group="nxos_ssh")
 """
 Basic filter functions
 """
-filter_host_vendor(nr, vendor="arista")
-filter_host_platform(nr, platform="ios")
-filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
+# filter_host_vendor(nr, vendor="arista")
+# filter_host_platform(nr, platform="ios")
+# filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
+"""
+Intermediate filter functions
+"""
+filter_host_dev_type_vendor(nr, device_type="switch", vendor="juniper")
+filter_host_dev_type_vendor_mgmt_ip(
+    nr, device_type="switch", vendor="juniper", mgmt_ip="10.0.0.23"
+)
+cisco_devices = filter_vendor(nr, vendor="cisco")
+cisco_switches = filter_dev_type(target_vendor=cisco_devices, device_type="router")
+cisco_routers = filter_dev_type(target_vendor=cisco_devices, device_type="switch")
+cisco_firewalls = filter_dev_type(target_vendor=cisco_devices, device_type="firewall")
