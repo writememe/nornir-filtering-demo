@@ -19,7 +19,7 @@ dirname = os.path.dirname(os.path.abspath(__file__))
 
 def get_nr():
     """
-    Initialises a Nornir inventory using various configuration files
+    Initialises a Nornir inventory using various configuration files.
 
     :return nr: An initialised Nornir inventory for use in other functions.
     """
@@ -50,18 +50,16 @@ def display_inventory(nr):
     # Print seperator line and hosts header
     print("=" * 50)
     print("HOSTS IN INVENTORY")
-    # Iterate over hosts in inventory
+    # Iterate over hosts in inventory and printout hosts
     for host in nr.inventory.hosts.keys():
-        # Print the hosts in the inventory
         print(f"Host: {Fore.CYAN}{host}")
     print(f"There are {len(nr.inventory.hosts.keys())} hosts in this inventory.")
     print("=" * 50)
     # Print seperator line and hosts header
     print("=" * 50)
     print("GROUPS IN INVENTORY")
-    # Iterate over groups in inventory
+    # Iterate over hosts in inventory and printout groups
     for group in nr.inventory.groups.keys():
-        # Print the groups in the inventory
         print(f"Group: {Fore.CYAN}{group}")
     print(f"There are {len(nr.inventory.groups.keys())} groups in this inventory.")
     print("=" * 50)
@@ -74,6 +72,8 @@ def display_host_dict(nr, host):
     :param nr: An initialised Nornir inventory, used for processing.
     :param host: The host you want to filter on.
     :type host: string
+
+    :return target_host: The targeted nornir host object.
     """
     # Filter all the hosts in the inventory, using the host passed in
     # at the top of the function.
@@ -87,6 +87,8 @@ def display_host_dict(nr, host):
     print(f"{host_dict_data}")
     # Print seperator
     print("=" * 50)
+    # Return target host
+    return target_host
 
 
 def display_group_dict(nr, group):
@@ -96,19 +98,23 @@ def display_group_dict(nr, group):
     :param nr: An initialised Nornir inventory, used for processing.
     :param group: The group you want to filter on.
     :type group: string
+
+    :return target_group: The targeted nornir group object.
     """
-    # Filter all the groups in the inventory, using the host passed in
+    # Filter all the groups in the inventory, using the group passed in
     # at the top of the function.
     target_group = nr.inventory.groups[group]
     # Dump the groups data structure to an indented variable
-    host_group_data = json.dumps(target_group.dict(), indent=4)
+    group_dict_data = json.dumps(target_group.dict(), indent=4)
     # Print seperator
     print("=" * 50)
-    # Print header and host data structure
+    # Print header and group data structure
     print("Displaying information for group: " + Fore.CYAN + f"{group}")
-    print(f"{host_group_data}")
+    print(f"{group_dict_data}")
     # Print seperator
     print("=" * 50)
+    # Return target group
+    return target_group
 
 
 def filter_host_platform(nr, platform):
@@ -118,15 +124,27 @@ def filter_host_platform(nr, platform):
     :param nr: An initialised Nornir inventory, used for processing.
     :param platform: The type of platform you want to filter on.
     :type platform: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    target_hosts = nr.filter(platform=platform).inventory.hosts.keys()
-    # Print seperator
+    # Execute filter based on platform
+    target_hosts = nr.filter(platform=platform)
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have platform {platform} are:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
-    # Print seperator
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Platform: {Fore.CYAN}{data.platform}"
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_host_vendor(nr, vendor):
@@ -136,15 +154,27 @@ def filter_host_vendor(nr, vendor):
     :param nr: An initialised Nornir inventory, used for processing.
     :param vendor: The type of vendor you want to filter on.
     :type vendor: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    target_hosts = nr.filter(vendor=vendor).inventory.hosts.keys()
-    # Print seperator
+    # Execute filter based on vendor
+    target_hosts = nr.filter(vendor=vendor)
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have vendor {vendor} are:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
-    # Print seperator
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Vendor: {Fore.CYAN}{data['vendor']}"
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 def filter_host_mgmt_ip(nr, mgmt_ip):
@@ -153,53 +183,29 @@ def filter_host_mgmt_ip(nr, mgmt_ip):
     IP address.
 
     :param nr: An initialised Nornir inventory, used for processing.
-    :param mgmt_ip: The management IP to filter on.
+    :param mgmt_ip: The management IP address to filter on.
     :type mgmt_ip: string
+
+    :return target_hosts: The targeted nornir hosts after being
+    processed through nornir filtering.
     """
-    target_hosts = nr.filter(mgmt_ip=mgmt_ip).inventory.hosts.keys()
-    # Print seperator
+    # Execute filter based on management IP address
+    target_hosts = nr.filter(mgmt_ip=mgmt_ip)
+    # Print seperator and header
     print("=" * 50)
     print(f"The hosts which have the management IP address {mgmt_ip} is:")
-    for host in target_hosts:
-        print(f"Host: {Fore.CYAN}{host}")
-    # Print seperator
+    # Iterate over filtered results and printout information
+    for host, data in target_hosts.inventory.hosts.items():
+        print(
+            f"Host: {Fore.CYAN}{host} "
+            + Fore.RESET
+            + f"- Management IP: {Fore.CYAN}{data['mgmt_ip']}"
+        )
+    # Print total and seperator
+    print(f"Total: {len(target_hosts.inventory.hosts.items())}")
     print("=" * 50)
-
-
-def filter_group_platform(nr, platform):
-    """
-    Filter the groups inventory, based on a certain platform.
-
-    :param nr: An initialised Nornir inventory, used for processing.
-    :param platform: The type of platform you want to filter on.
-    :type platform: string
-    """
-    target_groups = nr.filter(platform=platform).inventory.groups.keys()
-    # Print seperator
-    print("=" * 50)
-    print(f"The groups which have platform {platform} are:")
-    for group in target_groups:
-        print(f"Group: {Fore.CYAN}{group}")
-    # Print seperator
-    print("=" * 50)
-
-
-def filter_group_vendor(nr, vendor):
-    """
-    Filter the groups inventory, based on a certain vendor.
-
-    :param nr: An initialised Nornir inventory, used for processing.
-    :param vendor: The type of vendor you want to filter on.
-    :type vendor: string
-    """
-    target_groups = nr.filter(vendor=vendor).inventory.groups.keys()
-    # Print seperator
-    print("=" * 50)
-    print(f"The hosts which have vendor {vendor} are:")
-    for group in target_groups:
-        print(f"Group: {Fore.CYAN}{group}")
-    # Print seperator
-    print("=" * 50)
+    # Return filtered hosts
+    return target_hosts
 
 
 """
@@ -218,7 +224,5 @@ display_group_dict(nr, group="nxos_ssh")
 Basic filter functions
 """
 filter_host_vendor(nr, vendor="arista")
-filter_group_vendor(nr, vendor="cisco")
 filter_host_platform(nr, platform="ios")
-filter_group_platform(nr, platform="nxos_ssh")
 filter_host_mgmt_ip(nr, mgmt_ip="10.0.0.1")
