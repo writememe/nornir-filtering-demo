@@ -5,7 +5,7 @@ name: nornir-filtering-demo
 on:  # yamllint disable rule:truthy
     push:
         branches:
-            - master
+            - main
             - feature/*
         paths-ignore:
             - 'README.md'
