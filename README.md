@@ -15,6 +15,7 @@ This repository contains a set of examples and use-cases using nornir filtering.
 - [Structure](#structure)
 - [Videos](#videos)
 - [Reference Documentation](#reference-documentation)
+- [Filtering Cheatsheet](#filtering-cheatsheet)
 
 
 ## Installation
@@ -46,13 +47,23 @@ The demos work their way up in terms of complexity and depth of use-cases and ar
 | ---------- | ------------ | 
 |[001-basic](demos/001-basic/README.md)| Basic nornir filtering using one-dimensional filters|
 |[002-intermediate](demos/002-intermediate/README.md)| Intermediate nornir filtering using multi-dimensional filters |
-|[003-advanced](demos/003-advanced/README.md))| Advanced filtering using the `F` filter, filter functions and "chained" filters|
+|[003-advanced](demos/003-advanced/README.md)| Advanced filtering using the `F` filter, filter functions and "chained" filters|
 
 In addition to this, each demo contains all the code of the previous demo, so you can compare functions and see the differences.
 
 For example, `003-advanced` will contain all code from the `001-basic` and `002-intermediate` demos.
 
-
 ## Videos
 
 Coming soon :)
+
+## Reference Documentation
+
+Below are some links to other resources which you might find of assistance:
+
+[Nornir - Offical Documentation - Filtering the inventory](https://nornir.readthedocs.io/en/latest/tutorial/inventory.html#Filtering-the-inventory)
+
+
+## Filtering Cheatsheet
+
+See the [CHEATSHEET](CHEATSHEET.md)
