@@ -44,9 +44,9 @@ The demos work their way up in terms of complexity and depth of use-cases and ar
 
 | Level | Description |
 | ---------- | ------------ | 
-|001-basic| Basic nornir filtering using one-dimensional filters|
-|002-intermediate| Intermediate nornir filtering using multi-dimensional filters |
-|003-advanced| Advanced filtering using the `F` filter, filter functions and "chained" filters|
+|[001-basic](demos/001-basic/README.md)| Basic nornir filtering using one-dimensional filters|
+|[002-intermediate](demos/002-intermediate/README.md)| Intermediate nornir filtering using multi-dimensional filters |
+|[003-advanced](demos/003-advanced/README.md))| Advanced filtering using the `F` filter, filter functions and "chained" filters|
 
 In addition to this, each demo contains all the code of the previous demo, so you can compare functions and see the differences.
 
