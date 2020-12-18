@@ -11,7 +11,7 @@ To see the demo in action, there are two options available.
 
 ### Option 1 - motherstarter + nornir demo
 
-This option uses motherstarter to convert the [inventory.json].inputs/inventory.json) and [groups.json](inputs/groups.json) files into the equivalent nornir inventory data, ready to be used by the demo.
+This option uses motherstarter to convert the [inventory.json](inputs/inventory.json) and [groups.json](inputs/groups.json) files into the equivalent nornir inventory data, ready to be used by the demo.
 
 1) Convert the inventory/groups.json files into nornir inventory files
 
