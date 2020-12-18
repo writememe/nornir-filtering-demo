@@ -17,7 +17,7 @@ Below are the `F` filter operators:
 | ---------- | ------------ |
 |`~` | NOT |
 |`&` | AND |
-|`|` | OR |
+|`\|` | OR |
 
 ### Example Usage
 
