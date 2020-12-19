@@ -72,7 +72,7 @@ sla_more_than_ten = nr.filter(F(sla__gt=10))
 # Filter for sla lesser than or equal to 90
 sla_ninety_or_lesser = nr.filter(F(sla__le=90))
 # Filter for sla lesser than 12
-sla_more_than_twelve = nr.filter(F(sla__lt=12))
+sla_less_than_twelve = nr.filter(F(sla__lt=12))
 # Filter for a platform that contains "nos" in it.
 # i.e match "paloalto_panos" or "junos" but not "nxos"
 network_nos = nr.filter(F(platform__contains="nos"))
