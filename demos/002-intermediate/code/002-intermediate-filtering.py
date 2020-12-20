@@ -359,7 +359,7 @@ display_inventory(nr)
 # Display host data structure
 display_host_dict(nr, host="lab-arista-01.lab.dfjt.local")
 # Display group data structure
-display_group_dict(nr, group="ios")
+display_group_dict(nr, group="test")
 display_group_dict(nr, group="nxos_ssh")
 """
 Basic filter functions
@@ -375,6 +375,6 @@ filter_host_dev_type_vendor_mgmt_ip(
     nr, device_type="switch", vendor="juniper", mgmt_ip="10.0.0.23"
 )
 cisco_devices = filter_vendor(nr, vendor="cisco")
-cisco_switches = filter_dev_type(target_vendor=cisco_devices, device_type="router")
-cisco_routers = filter_dev_type(target_vendor=cisco_devices, device_type="switch")
+cisco_routers = filter_dev_type(target_vendor=cisco_devices, device_type="router")
+cisco_switches = filter_dev_type(target_vendor=cisco_devices, device_type="switch")
 cisco_firewalls = filter_dev_type(target_vendor=cisco_devices, device_type="firewall")
