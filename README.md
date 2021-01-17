@@ -54,7 +54,9 @@ For example, `003-advanced` will contain all code from the `001-basic` and `002-
 
 ## Videos
 
-Coming soon :)
+To watch all three demos, including explanations, please watch the video below:
+
+[nornir - Filtering Deep Dive](https://youtu.be/aGyLKITj4Nw)
 
 ## Reference Documentation
 
