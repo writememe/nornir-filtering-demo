@@ -3,5 +3,5 @@ bandit>=1.6.2
 black==20.8b1
 pylama==7.7.1
 motherstarter==2021.3.5
-nornir==3.0.0
+nornir==3.1.0
 colorama==0.4.4
