@@ -1,7 +1,7 @@
 # Requirements file, statically pinned for now
 bandit>=1.6.2
 black==22.3.0
-pylama==7.7.1
+pylama==8.3.8
 motherstarter==2022.4.2
 nornir==3.2.0
 colorama==0.4.4
